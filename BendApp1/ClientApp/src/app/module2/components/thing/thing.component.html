@@ -1,0 +1,9 @@
+<div *ngIf="things$ | async as things; else noThings">
+    <h2>Things:</h2>
+    <ul>
+      <li *ngFor="let thing of things">{{ thing.id }} - {{ thing.sku }} - {{ thing.status }} - {{ thing.countActive }}</li>
+    </ul>
+  </div>
+  <ng-template #noThings>
+    <p>No things available.</p>
+  </ng-template>
