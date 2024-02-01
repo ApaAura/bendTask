@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Area } from 'src/app/core/models/area/area';
@@ -21,38 +21,27 @@ export class GetDataService {
   getAreas(): Observable<Area[]> {
     return this.http.get<Area[]>(`${this.apiUrl}/getAreas`);
   }
-
-  getAreaIds(): Observable<number[]> {
-    return this.getAreas().pipe(
-      map((areas: Area[]) => areas.map(area => area.areaId))
-    );
-  }
-
-  getThingsSortedByAreaIds(): Observable<{ area: Area, gThings: Thing[][] }[]> {
-    return forkJoin({
-      areas: this.getAreas(),
-      things: this.getThings()
-    }).pipe(
-      map(({ areas, things }: { areas: Area[], things: Thing[] }) => {
-        const result: { area: Area, gThings: Thing[][] }[] = [];
-
-        areas.forEach(area => {
-          const thingsForArea = things.filter(thing => thing.areaId === area.areaId);
-          const groupedThings: Thing[][] = [];
-
-          thingsForArea.forEach(thing => {
-            if (thing.joinedWith === null) {
-              const group = [thing, ...thingsForArea.filter(t => t.joinedWith === thing.id)];
-              groupedThings.push(group);
-            }
-          });
-
-          result.push({ area: area, gThings: groupedThings });
-        });
-
-        return result;
+   getAreaThings(areaId: number): Observable<{ gThings: Thing[] }> {
+    return this.getThings().pipe(
+      map(things => {
+        const thingsForArea = things.filter(thing => thing.areaId === areaId);
+        return { gThings: thingsForArea };
       })
     );
   }
-
+  getThingsGrouped(areaId: number): Observable<{ gThings: Thing[][] }> {
+    return this.getAreaThings(areaId).pipe(
+      map(({ gThings }) => {
+        const groupedThings: Thing[][] = [];
+  
+        gThings.forEach(thing => {
+          if (thing.joinedWith === null) {
+            const group = [thing, ...gThings.filter(t => t.joinedWith === thing.id)];
+            groupedThings.push(group);
+          }
+        });
+        return { gThings: groupedThings };
+      })
+    );
+  }
 }

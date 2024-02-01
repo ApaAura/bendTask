@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { GetDataService } from 'src/app/core/services/get-data/get-data.service';
 import { Area } from 'src/app/core/models/area/area';
 import { Thing } from 'src/app/core/models/thing/thing';
-import { GetDataService } from 'src/app/core/services/get-data/get-data.service';
 
 @Component({
   selector: 'app-sort-by-area',
@@ -10,12 +10,13 @@ import { GetDataService } from 'src/app/core/services/get-data/get-data.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SortByAreaComponent implements OnInit {
-  areas:{ area: Area, gThings: Thing[][] }[] = [];
-  constructor(private getDataService: GetDataService,private cdr: ChangeDetectorRef){}
+  areas: Area[] = [];
+  constructor(private getDataService: GetDataService, private cdr: ChangeDetectorRef) {}
+
   ngOnInit(): void {
-    this.getDataService.getThingsSortedByAreaIds().subscribe(areas => {
+    this.getDataService.getAreas().subscribe(areas => {
       this.areas = areas;
-      this.cdr.markForCheck();
+      this.cdr.detectChanges();
     });
   }
 }
