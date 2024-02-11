@@ -1,11 +1,13 @@
-<div *ngIf="areas$ | async as areas; else noAreas">
-  <h2>Areas:</h2>
-  <ul>
-    <li *ngFor="let area of areas">{{ area.areaId }} - {{ area.name }}</li>
-  </ul>
+<h2 class="text-white" *ngIf="area">{{ area.name }}</h2>
+<div *ngIf="areaGroups$ | async as areaGroups; else loadingOrEmpty">
+  <div class="row" *ngIf="areaGroups.gThings.length > 0">
+    <ng-container *ngIf="areaGroups$ | async as areaGroups">
+      <app-area-group class="col-auto" *ngFor="let group of areaGroups.gThings" [thingGroup]="group"></app-area-group>
+    </ng-container>  
+  </div>
+  <p class="container" *ngIf="!areaGroups.gThings.length">No groups in area.</p>
 </div>
-<ng-template #noAreas>
-  <p>No areas available.</p>
-</ng-template>
 
-<app-thing></app-thing>
+<ng-template #loadingOrEmpty>
+  <p class="container" *ngIf="!areaGroups$">Loading...</p>
+</ng-template>

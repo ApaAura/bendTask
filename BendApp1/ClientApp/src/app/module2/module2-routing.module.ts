@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AreaComponent } from './components/area/area.component';
+import { SortByAreaComponent } from './components/sort-by-area/sort-by-area.component';
 
 const routes: Routes = [
   {
     path: 'module2',
-    children: [{ path: '', component: AreaComponent }],
+    children: [{ path: '', component: SortByAreaComponent }],
   },
 ];
 

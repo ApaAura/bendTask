@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Input,
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,15 +15,6 @@ import { GetDataService } from 'src/app/core/services/get-data/get-data.service'
   styleUrls: ['./thing.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ThingComponent implements OnInit {
-  things$!: Observable<Thing[]>;
-
-  constructor(
-    private getDataService: GetDataService,
-    private cdr: ChangeDetectorRef,
-  ) {}
-
-  ngOnInit(): void {
-    this.things$ = this.getDataService.getThings();
-  }
+export class ThingComponent{
+  @Input() thing!: Thing;
 }

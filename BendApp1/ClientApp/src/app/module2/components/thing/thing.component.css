@@ -1,7 +1,7 @@
 .thing-square {
   background-color: #2b4e87;
   border-radius: 0.5rem;
-  width: 150px;
+  width: 160px;
   height: 90px;
   font-size: 1.8rem;
 }
@@ -15,10 +15,18 @@
   position: absolute;
   top: 10px;
   left: 0;
-  background-color: yellow;
   height: 70px;
   width: 5px;
   border-radius: 0 4px 4px 0;
+}
+.status-active {
+  background-color: yellow;
+}
+.status-opened {
+  background-color: orange;
+}
+.status-closed {
+  background-color: red;
 }
 .wrap {
   background-color: #203d74;

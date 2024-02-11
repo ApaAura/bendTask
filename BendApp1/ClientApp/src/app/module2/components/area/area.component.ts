@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Area } from 'src/app/core/models/area/area';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { GetDataService } from 'src/app/core/services/get-data/get-data.service';
+import { Area } from 'src/app/core/models/area/area';
+import { Observable } from 'rxjs';
+import { Thing } from 'src/app/core/models/thing/thing';
 
 @Component({
   selector: 'app-area',
@@ -10,11 +11,14 @@ import { GetDataService } from 'src/app/core/services/get-data/get-data.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AreaComponent implements OnInit {
-  areas$!: Observable<Area[]>;
+  @Input() area!: Area;
+  areaGroups$: Observable<{ gThings: Thing[][] }> | undefined;
 
   constructor(private getDataService: GetDataService) {}
 
   ngOnInit(): void {
-    this.areas$ = this.getDataService.getAreas();
+    if (this.area?.areaId) {
+      this.areaGroups$ = this.getDataService.getThingsGrouped(this.area.areaId);
+    }
   }
 }
