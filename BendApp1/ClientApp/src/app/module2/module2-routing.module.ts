@@ -5,14 +5,12 @@ import { AreaComponent } from './components/area/area.component';
 const routes: Routes = [
   {
     path: 'module2',
-    children: [
-      { path: '', component: AreaComponent },
-    ]
-  }
+    children: [{ path: '', component: AreaComponent }],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class Module2RoutingModule { }
+export class Module2RoutingModule {}

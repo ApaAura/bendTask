@@ -10,9 +10,7 @@ import { Module2Module } from './module2/module2.module';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -20,9 +18,9 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     AppRoutingModule,
     Module1Module,
-    Module2Module
+    Module2Module,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

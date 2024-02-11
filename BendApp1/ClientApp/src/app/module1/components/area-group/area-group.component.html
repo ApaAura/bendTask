@@ -1,11 +1,11 @@
-<div *ngIf="thingGroup.length > 0; else noElements" class="row">
-        <div class="col-auto thing-square m-2 d-flex align-items-center justify-content-center position-relative"
-            *ngFor="let thing of thingGroup;  let last = last; let first=first;">
-            <div *ngIf="first" [ngClass]="getStatusClass(thingGroup)"></div>
-            <app-thing [thing]="thing" class="m-2 ms-0"></app-thing>
-            <div class="wrap" *ngIf="!last"></div>
-        </div>
+<div class="row col" *ngIf="thingGroup.length > 0; else noElements" >
+  <div class="thing-square m-2 d-flex align-items-center justify-content-center position-relative"
+    *ngFor="let thing of thingGroup; let last = last; let first = first" >
+    <div *ngIf="first" [ngClass]="getStatusClass(thingGroup)"></div>
+    <app-thing [thing]="thing" class="m-2 ms-0"></app-thing>
+    <div class="wrap" *ngIf="!last"></div>
+  </div>
 </div>
 <ng-template #noElements>
-    <p class="container">No elements in group.</p>
+  <p class="container">No elements in group.</p>
 </ng-template>

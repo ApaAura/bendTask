@@ -1,9 +1,5 @@
 <h2 class="text-white" *ngIf="area">{{ area.name }}</h2>
-<div *ngIf="areaGroups.length > 0; else noGroups">
-    <ng-container *ngFor="let group of areaGroups" >
-        <app-area-group [thingGroup]="group"></app-area-group>
-    </ng-container>
+<div class="row" *ngIf="areaGroups.length > 0">
+  <app-area-group class="col-auto" *ngFor="let group of areaGroups" [thingGroup]="group"></app-area-group>
 </div>
-<ng-template #noGroups>
-    <p class="container">No groups in area.</p>
-</ng-template>
+<p class="container" *ngIf="!areaGroups.length">No groups in area.</p>

@@ -8,9 +8,8 @@ describe('SortByAreaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SortByAreaComponent ]
-    })
-    .compileComponents();
+      declarations: [SortByAreaComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SortByAreaComponent);
     component = fixture.componentInstance;

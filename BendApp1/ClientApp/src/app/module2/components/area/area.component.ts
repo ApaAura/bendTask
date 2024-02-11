@@ -7,9 +7,9 @@ import { GetDataService } from 'src/app/core/services/get-data/get-data.service'
   selector: 'app-area',
   templateUrl: './area.component.html',
   styleUrls: ['./area.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AreaComponent  implements OnInit{
+export class AreaComponent implements OnInit {
   areas$!: Observable<Area[]>;
 
   constructor(private getDataService: GetDataService) {}
@@ -18,4 +18,3 @@ export class AreaComponent  implements OnInit{
     this.areas$ = this.getDataService.getAreas();
   }
 }
-

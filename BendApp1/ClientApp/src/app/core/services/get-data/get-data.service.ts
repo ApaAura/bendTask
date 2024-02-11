@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { forkJoin, map } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Area } from 'src/app/core/models/area/area';
 import { Thing } from 'src/app/core/models/thing/thing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class GetDataService {
-  private apiUrl = 'http://localhost:5145/api/data'; 
+  private apiUrl = 'http://localhost:5145/api/data';
 
   constructor(private http: HttpClient) {}
 
@@ -21,27 +20,30 @@ export class GetDataService {
   getAreas(): Observable<Area[]> {
     return this.http.get<Area[]>(`${this.apiUrl}/getAreas`);
   }
-   getAreaThings(areaId: number): Observable<{ gThings: Thing[] }> {
+  getAreaThings(areaId: number): Observable<{ gThings: Thing[] }> {
     return this.getThings().pipe(
-      map(things => {
-        const thingsForArea = things.filter(thing => thing.areaId === areaId);
+      map((things) => {
+        const thingsForArea = things.filter((thing) => thing.areaId === areaId);
         return { gThings: thingsForArea };
-      })
+      }),
     );
   }
   getThingsGrouped(areaId: number): Observable<{ gThings: Thing[][] }> {
     return this.getAreaThings(areaId).pipe(
       map(({ gThings }) => {
         const groupedThings: Thing[][] = [];
-  
-        gThings.forEach(thing => {
+
+        gThings.forEach((thing) => {
           if (thing.joinedWith === null) {
-            const group = [thing, ...gThings.filter(t => t.joinedWith === thing.id)];
+            const group = [
+              thing,
+              ...gThings.filter((t) => t.joinedWith === thing.id),
+            ];
             groupedThings.push(group);
           }
         });
         return { gThings: groupedThings };
-      })
+      }),
     );
   }
 }

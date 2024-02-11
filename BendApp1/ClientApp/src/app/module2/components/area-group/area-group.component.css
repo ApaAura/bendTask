@@ -1,39 +1,39 @@
-.thing-square{
-    background-color: #2b4e87;
-    border-radius: 0.5rem;
-    width: 150px;
-    height: 90px;
-    font-size: 1.8rem;
+.thing-square {
+  background-color: #2b4e87;
+  border-radius: 0.5rem;
+  width: 150px;
+  height: 90px;
+  font-size: 1.8rem;
 }
-.defaultSku{
-    position: absolute; 
-    top: 0; 
-    right: 0;
-    font-size: 1.2rem;
+.defaultSku {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.2rem;
 }
-.status{
-    position: absolute; 
-    top: 10px; 
-    left: 0;
-    height: 70px;
-    width: 5px;
-    border-radius: 0 4px 4px 0;
+.status {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  height: 70px;
+  width: 5px;
+  border-radius: 0 4px 4px 0;
 }
-.status-active{
-    background-color: yellow;
+.status-active {
+  background-color: yellow;
 }
-.status-opened{
-    background-color: orange;
+.status-opened {
+  background-color: orange;
 }
-.status-closed{
-    background-color: red;
+.status-closed {
+  background-color: red;
 }
-.wrap{
-    background-color: #203d74;
-    height: 70px;
-    width: 16px;
-    margin: 0;
-    position: absolute;
-    right: -16px;
-    top: 10px;
+.wrap {
+  background-color: #203d74;
+  height: 70px;
+  width: 16px;
+  margin: 0;
+  position: absolute;
+  right: -16px;
+  top: 10px;
 }

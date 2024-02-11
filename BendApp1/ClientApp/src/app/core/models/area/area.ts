@@ -1,4 +1,4 @@
-export class Area {
-    areaId!: number;
-    name!: string;
+export interface Area {
+  areaId: number;
+  name: string;
 }

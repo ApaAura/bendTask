@@ -8,9 +8,8 @@ describe('AreaGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AreaGroupComponent ]
-    })
-    .compileComponents();
+      declarations: [AreaGroupComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AreaGroupComponent);
     component = fixture.componentInstance;

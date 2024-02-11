@@ -6,16 +6,13 @@ import { ThingComponent } from './components/thing/thing.component';
 import { SortByAreaComponent } from './components/sort-by-area/sort-by-area.component';
 import { AreaGroupComponent } from './components/area-group/area-group.component';
 
-
 @NgModule({
   declarations: [
     AreaComponent,
     ThingComponent,
     SortByAreaComponent,
-    AreaGroupComponent
+    AreaGroupComponent,
   ],
-  imports: [
-    CommonModule,
-  ]
+  imports: [CommonModule],
 })
-export class Module1Module { }
+export class Module1Module {}

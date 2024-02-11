@@ -5,14 +5,12 @@ import { SortByAreaComponent } from './components/sort-by-area/sort-by-area.comp
 const routes: Routes = [
   {
     path: '',
-    children: [
-      { path: '', component: SortByAreaComponent },
-    ]
-  }
+    children: [{ path: '', component: SortByAreaComponent }],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class Module1RoutingModule { }
+export class Module1RoutingModule {}
